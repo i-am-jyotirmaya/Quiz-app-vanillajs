@@ -40,6 +40,7 @@ const saveQuizResponse = (questionObj) => {
     if(ansul.querySelector('input[type=radio][name=ans]:checked+label')) {
         ans = ansul.querySelector('input[type=radio][name=ans]:checked+label').innerText;
         id = +ansul.querySelector('input[type=radio][name=ans]:checked').id;
+        ans = ans.substring(ans.indexOf(".") + 2);
         questionObj.isAnswered = true;
         questionObj.answer.id = id;
         questionObj.answer.value = ans;
