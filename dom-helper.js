@@ -33,7 +33,7 @@ const saveQuizResponse = (questionObj) => {
     let id = 0;
     if(ansul.querySelector('input[type=radio][name=ans]:checked+label')) {
         ans = ansul.querySelector('input[type=radio][name=ans]:checked+label').innerText;
-        id = +ansul.querySelector('input[type=radio][name=ans]:checked+label').id;
+        id = +ansul.querySelector('input[type=radio][name=ans]:checked').id;
         questionObj.isAnswered = true;
         questionObj.answer.id = id;
         questionObj.answer.value = ans;
@@ -69,7 +69,7 @@ const setQuestionData = (questionObj, isFirst, isLast) => {
     });
 
     if(questionObj.isAnswered) {
-        ansul.getElementById(questionObj.answer.id).checked = true;
+        ansul.querySelector(`input[type=radio][id="${questionObj.answer.id}"]`).checked = true;
     }
 }
 

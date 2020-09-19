@@ -88,6 +88,7 @@ btnNext.onclick = () => {
         return;
     }
     if(!saveQuizResponse(questionsArray[currentQuestion])) return;
+    console.log(questionsArray[currentQuestion]);
     currentQuestion++;
     setQuestionData(questionsArray[currentQuestion], currentQuestion === 0 ? true : false, currentQuestion === questionsArray.length-1 ? true : false);
 }
