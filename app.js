@@ -1,10 +1,10 @@
 const quizService = new QuizService();
 
-const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
-const ddlDifficulty = /**@type{HTMLSelectElement} */(document.getElementById('sel-difficulty'));
-const ddlType = /**@type{HTMLSelectElement} */(document.getElementById('sel-type'));
 const btnLaunchQuiz = /**@type{HTMLButtonElement} */(document.getElementById('launch-quiz'));
-const txtAmount = /**@type{HTMLInputElement} */(document.getElementById('inp-amount'));
+// const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
+// const ddlDifficulty = /**@type{HTMLSelectElement} */(document.getElementById('sel-difficulty'));
+// const ddlType = /**@type{HTMLSelectElement} */(document.getElementById('sel-type'));
+// const txtAmount = /**@type{HTMLInputElement} */(document.getElementById('inp-amount'));
 // const btnPrev = /**@type{HTMLButtonElement} */(document.querySelector('.q-prev'));
 // const btnNext1 = /**@type{HTMLButtonElement} */(document.querySelector('.q-next'));
 // const btnSubmit1 = /**@type{HTMLButtonElement} */(document.querySelector('.q-submit'));

@@ -5,6 +5,10 @@ const btnPrev = /**@type{HTMLButtonElement} */(document.querySelector('.q-prev')
 const btnNext = /**@type{HTMLButtonElement} */(document.querySelector('.q-next'));
 const btnSubmit = /**@type{HTMLButtonElement} */(document.querySelector('.q-submit'));
 const appName = document.getElementById('app-name');
+const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
+const ddlDifficulty = /**@type{HTMLSelectElement} */(document.getElementById('sel-difficulty'));
+const ddlType = /**@type{HTMLSelectElement} */(document.getElementById('sel-type'));
+const txtAmount = /**@type{HTMLInputElement} */(document.getElementById('inp-amount'));
 
 // Methods
 const initializeCategories = async (/**@type{HTMLSelectElement} */ ddl) => {
@@ -61,7 +65,7 @@ const setQuestionData = (questionObj, isFirst, isLast) => {
         btnNext.style.removeProperty("display");
     }
 
-    question.innerText = questionObj.question;
+    question.innerText = `Q${+questionObj.serial+1}. ${questionObj.question}`;
     ansul.innerHTML='';
     if(ansul.querySelector('input[type=radio][name=ans]:checked')) {
         ansul.querySelector('input[type=radio][name=ans]:checked').checked = false;
@@ -79,7 +83,7 @@ const createOption = (value, id) => {
     const html = `<li>
                     <span>
                         <input type="radio" name="ans" id="${id}">
-                        <label for="${id}">${value}</label>
+                        <label for="${id}">${+id+1}. ${value}</label>
                     </span>
                 </li>`;
     return parseFromString(html);
@@ -96,5 +100,9 @@ const resetQuiz = () => {
     const quiz = document.querySelector('.quiz');
     cp.style.display = "block";
     quiz.style.display = "none";
+    ddlCategory.value = "";
+    ddlDifficulty.value = "";
+    ddlType.value = "";
+    txtAmount.value = "";
     appName.classList.replace('quiz-header', 'app-header');
 }

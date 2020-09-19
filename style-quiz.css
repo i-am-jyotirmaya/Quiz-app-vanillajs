@@ -19,6 +19,13 @@
     cursor: pointer;
     padding: 1rem 1.5rem;
 }
+.q-prev {
+    margin-right: auto;
+    background-color: wheat;
+}
+.q-next {
+    background-color: green;
+}
 .q-question-txt {
     font-size: clamp(1.3em, 3.5vw,2em);
     word-wrap: normal;
