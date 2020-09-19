@@ -10,6 +10,7 @@
     animation: bg-transition-q 20s ease-in-out infinite alternate;
     display: grid;
     grid-template-rows: 20vh auto 15vh;
+    align-items: center;
 }
 .q-btn {
     appearance: none;
