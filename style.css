@@ -1,0 +1,68 @@
+:root {
+    --gradient: linear-gradient(315deg, #845ec2,#d65db1, #ff6f91, #ff9671, #ffc75f, #f9f871);
+    --gradient-quiz: linear-gradient(45deg, #58D68D, #F9E79F, #F8C471,#DC7633);
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow:none;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    margin: 0;
+}
+
+.app-header {
+    max-height: 12vh;
+    position: absolute;
+    top: 0;
+    padding: 1vh 0;
+    width: 100%;
+}
+.app-header .app-title {
+    color: crimson;
+    font-size: 10vh;
+    margin: 0;
+    text-align: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.theme-input {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: transform 40ms ease-in;
+}
+.theme-input::after {
+    content: '';
+    background-color: rgba(0,0,0,0.3);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -2;
+}
+.theme-input::before {
+    content: '';
+    background-color: inherit;
+    border-radius: inherit;
+    position: absolute;
+    top: -0.2rem;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    transition: top 150ms ease-in;
+}
+.theme-input:hover::before, .theme-input:focus-within::before {
+    top: -0.5rem;
+}

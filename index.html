@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lets Quizzz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-cp.css">
+    <link rel="stylesheet" href="style-quiz.css">
+    <script src="./quiz-service.js"></script>
+    <script src="./dom-helper.js" defer></script>
+    <script src="./function-helper.js"></script>
+    <script src="./app.js" defer></script>
+</head>
+<body>
+    <header style="display: none;" class="app-header">
+        <h1 class="app-title">Lets Quizzz</h1>
+    </header>
+    <section class="control-panel">
+        <div class="cp-top-bar">
+            <button class="cp-btn cp-btn-reset theme-input">Reset Session</button>
+        </div>
+        <form>
+            <div class="cp-input-group">
+                <label class="cp-label" for="sel-category">Category</label>
+                <span class="input-wrapper theme-input">
+                    <select name="sel-category" id="sel-category" class="cp-select" required>
+                        <option value="" disabled selected hidden>Select Category</option>
+                        <option value="0">Random</option>
+                    </select>
+                </span>
+            </div>
+            <div class="cp-input-group">
+                <label class="cp-label" for="sel-difficulty">Difficulty</label>
+                <span class="input-wrapper theme-input">
+                    <select name="sel-difficulty" id="sel-difficulty" class="cp-select" required>
+                        <option value="" disabled selected hidden>Select Difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </span>
+            </div>
+            <div class="cp-input-group">
+                <label class="cp-label" for="sel-type">Type</label>
+                <span class="input-wrapper theme-input">
+                    <select name="sel-type" id="sel-type" class="cp-select" required>
+                        <option value="" disabled selected hidden>Select Question Type</option>
+                        <option value="multiple">Multiple Choice</option>
+                        <option value="boolean">True / False</option>
+                    </select>
+                </span>
+            </div>
+            <div class="cp-input-group">
+                <label class="cp-label" for="inp-amount">No of questions</label>
+                <span class="input-wrapper theme-input">
+                    <input type="text" name="inp-amount" id="inp-amount" class="cp-input-txt" onkeypress="return allowOnlyNumbers(event)" placeholder="No. of questions" required>
+                </span>
+            </div>
+            <div class="cp-bottom-bar">
+                <button type="submit" class="cp-btn theme-input cp-submit" id="launch-quiz">Launch Quiz</button>
+            </div>
+        </form>
+    </section>
+    <section style="display: none;" class="quiz">
+        <div class="q-question">
+            <h1 class="q-question-txt" id="question-txt">Question</h1>
+        </div>
+        <div class="q-ans">
+            <ul class="q-ul-ans" id="ans-ul">
+                <!-- <li>
+                    <span>
+                        <input type="radio" name="ans" id="1">
+                        <label for="1">Lorem, ipsum.</label>
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <input type="radio" name="ans" id="2">
+                        <label for="2">Lorem, ipsum.</label>
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <input type="radio" name="ans" id="3">
+                        <label for="3">Lorem, ipsum.</label>
+                    </span>
+                </li>
+                <li>
+                    <span>
+                        <input type="radio" name="ans" id="4">
+                        <label for="4">Lorem, ipsum dolor.</label>
+                    </span>
+                </li> -->
+            </ul>
+        </div>
+        <div class="q-submit-div">
+            <button class="q-btn theme-input q-prev">Previous Question</button>
+            <button class="q-btn theme-input q-next">Next Question</button>
+            <button style="display: none;" class="q-btn theme-input q-submit">Submit</button>
+        </div>
+    </section>
+</body>
+</html>

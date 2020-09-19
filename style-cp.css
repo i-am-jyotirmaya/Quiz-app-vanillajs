@@ -1,0 +1,98 @@
+/* Control Panel Styles */
+.control-panel {
+    height: 100vh;
+    width: 100vw;
+    background-image: var(--gradient);
+    background-size: 300%;
+    animation: bg-transition-cp 20s ease-in-out infinite alternate;
+    padding: 20vh 20vw 13vh 20vw;
+}
+.control-panel form {
+    margin: 2rem 0;
+}
+.control-panel form>* {
+    margin: 1rem 0;
+}
+.control-panel form div:last-of-type {
+    margin-top: 2rem;
+}
+.cp-top-bar {
+    display: flex;
+    flex-direction: column;
+}
+.cp-btn {
+    appearance: none;
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+}
+
+.cp-bottom-bar {
+    display: flex;
+    flex-direction: column;
+}
+
+.cp-btn:active {
+    transform: scale(0.95);
+}
+
+.cp-btn-reset {
+    background-color: orangered;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.cp-input-group {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    align-items: center;
+}
+.cp-input-group label {
+    font-size: 1.5em;
+}
+
+.cp-input-txt {
+    appearance: none;
+    border: none;
+    outline: none;
+}
+.cp-input-txt::placeholder {
+    color: rgba(0,0,0,0.3);
+    font-weight: 700;
+}
+
+.cp-select {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.cp-select:invalid {
+    color: rgba(0,0,0,0.3);
+    font-weight: 700;
+}
+.cp-select option {
+    color: black;
+}
+
+.cp-submit {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.input-wrapper {
+    background-color: white;
+    border-radius: .25rem;
+    overflow: hidden;
+    display: inline-block;
+    padding: 1rem 1.5rem;
+}
+
+@keyframes bg-transition-cp {
+    from {
+        background-position-x: left;
+    }
+    to {
+        background-position-x: right;
+    }
+}
