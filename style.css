@@ -17,6 +17,10 @@ body {
     margin: 0;
 }
 
+#app-name, #app-name h1 {
+    transition: all 100ms ease-in;
+}
+
 .app-header {
     max-height: 12vh;
     position: absolute;
@@ -26,9 +30,23 @@ body {
 }
 .app-header .app-title {
     color: crimson;
-    font-size: 10vh;
     margin: 0;
     text-align: center;
+}
+.quiz-header {
+    max-height: 12vh;
+    position: absolute;
+    top: 0;
+    padding: 1vh 0;
+    width: 100%;
+    padding-left: 5vw;
+    padding-top: 2vh;
+}
+.quiz-header .app-title {
+    color: crimson;
+    font-size: 4vh;
+    margin: 0;
+    text-align: left;
 }
 
 .d-flex {
@@ -65,4 +83,22 @@ body {
 }
 .theme-input:hover::before, .theme-input:focus-within::before {
     top: -0.5rem;
+}
+
+@media only screen and (min-width: 800px) {
+    .app-header {
+        max-height: 12vh;
+    }
+    .app-header .app-title {
+        font-size: 10vh;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .app-header {
+        max-height: 12vh;
+        margin-top: 4vh;
+    }
+    .app-header .app-title {
+        font-size: 7vh;
+    }
 }
