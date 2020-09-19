@@ -44,8 +44,6 @@
 }
 
 .cp-input-group {
-    display: grid;
-    grid-template-columns: 50% 50%;
     align-items: center;
 }
 .cp-input-group label {
@@ -94,5 +92,23 @@
     }
     to {
         background-position-x: right;
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .cp-input-group {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .control-panel {
+        height: 113vh;
+    }
+    .cp-input-group {
+        display: grid;
+        grid-template-rows: 50% 50%;
+        align-items: center;
     }
 }

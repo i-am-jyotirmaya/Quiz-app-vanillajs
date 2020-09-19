@@ -4,6 +4,7 @@ const ansul = /**@type{HTMLUListElement} */(document.getElementById('ans-ul'));
 const btnPrev = /**@type{HTMLButtonElement} */(document.querySelector('.q-prev'));
 const btnNext = /**@type{HTMLButtonElement} */(document.querySelector('.q-next'));
 const btnSubmit = /**@type{HTMLButtonElement} */(document.querySelector('.q-submit'));
+const appName = document.getElementById('app-name');
 
 // Methods
 const initializeCategories = async (/**@type{HTMLSelectElement} */ ddl) => {
@@ -26,6 +27,7 @@ const switchToQuiz = () => {
     const quiz = document.querySelector('.quiz');
     cp.style.display = "none";
     quiz.style.display = "grid";
+    appName.classList.replace('app-header', 'quiz-header');
 }
 
 const saveQuizResponse = (questionObj) => {
@@ -94,4 +96,5 @@ const resetQuiz = () => {
     const quiz = document.querySelector('.quiz');
     cp.style.display = "block";
     quiz.style.display = "none";
+    appName.classList.replace('quiz-header', 'app-header');
 }
