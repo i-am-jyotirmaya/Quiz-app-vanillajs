@@ -51,7 +51,7 @@ class QuizService {
 
     async sendRequest(/**@type{URL} */ url) {
         this.setEncoding(url, 'base64')
-        console.log(url.href);
+        // console.log(url.href);
         return fetch(url).then(res => res.json()).then(json => json).catch(err => err);
     }
 

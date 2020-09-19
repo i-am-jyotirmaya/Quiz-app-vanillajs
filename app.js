@@ -35,7 +35,7 @@ btnLaunchQuiz.onclick = (e) => {
 
 async function startQuiz() {
     isQuizStarted = true;
-    console.log(isQuizStarted);
+    // console.log(isQuizStarted);
     let token = '';
     if (!sessionStorage.getItem('token')) {
         token = (await quizService.getSessionToken()).token;
@@ -43,7 +43,7 @@ async function startQuiz() {
     } else {
         token = sessionStorage.getItem('token');
     }
-    console.log(token);
+    // console.log(token);
 
     const url = quizService.createUrlObject();
     if(ddlCategory.value) {
@@ -61,10 +61,10 @@ async function startQuiz() {
         quizService.setAmount(url, 10);
     }
     const response = await quizService.sendRequest(url);
-    console.log(response);
+    // console.log(response);
     if(response.response_code === 0) {
         questionsArray.push(...(await prepareQuestions(response.results)));
-        console.log(questionsArray);
+        // console.log(questionsArray);
     }
 
     if(questionsArray.length) {
@@ -88,7 +88,7 @@ btnNext.onclick = () => {
         return;
     }
     if(!saveQuizResponse(questionsArray[currentQuestion])) return;
-    console.log(questionsArray[currentQuestion]);
+    // console.log(questionsArray[currentQuestion]);
     currentQuestion++;
     setQuestionData(questionsArray[currentQuestion], currentQuestion === 0 ? true : false, currentQuestion === questionsArray.length-1 ? true : false);
 }
