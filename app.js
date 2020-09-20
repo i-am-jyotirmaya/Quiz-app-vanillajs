@@ -1,4 +1,5 @@
 const quizService = new QuizService();
+showLoader();
 
 const btnLaunchQuiz = /**@type{HTMLButtonElement} */(document.getElementById('launch-quiz'));
 // const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
@@ -29,13 +30,17 @@ initializeCategories(ddlCategory);
 //loading quiz
 btnLaunchQuiz.onclick = (e) => {
     e.preventDefault();
-    switchToQuiz();
+    showLoader('Starting Quiz...')
     startQuiz();
 }
 
 async function startQuiz() {
     isQuizStarted = true;
+    currentQuestion = 0;
+    questionsArray.length = 0;
+    // console.log(questionsArray);
     // console.log(isQuizStarted);
+    updateLoader('Fetching session token...');
     let token = '';
     if (!sessionStorage.getItem('token')) {
         token = (await quizService.getSessionToken()).token;
@@ -44,7 +49,7 @@ async function startQuiz() {
         token = sessionStorage.getItem('token');
     }
     // console.log(token);
-
+    updateLoader('Setting your preferences...');
     const url = quizService.createUrlObject();
     if(ddlCategory.value) {
         quizService.setCategory(url, +ddlCategory.value);
@@ -60,8 +65,10 @@ async function startQuiz() {
     } else {
         quizService.setAmount(url, 10);
     }
+    // console.log(url.href)
     const response = await quizService.sendRequest(url);
     // console.log(response);
+    updateLoader('Preparing Quiz...');
     if(response.response_code === 0) {
         questionsArray.push(...(await prepareQuestions(response.results)));
         // console.log(questionsArray);
@@ -70,7 +77,8 @@ async function startQuiz() {
     if(questionsArray.length) {
         setQuestionData(questionsArray[currentQuestion], true, false);
     }
-
+    switchToQuiz();
+    hideLoader();
 }
 
 btnPrev.onclick = () => {
@@ -94,12 +102,17 @@ btnNext.onclick = () => {
 }
 
 btnSubmit.onclick = () => {
-    let score = 0;
-    questionsArray.forEach(q => {
-        if(q.isCorrect) {
-            score++;
-        }
-    });
-    alert(`Your score is ${score}`);
+    if(!saveQuizResponse(questionsArray[currentQuestion])) return;
+    // let score = 0;
+    // questionsArray.forEach(q => {
+    //     if(q.isCorrect) {
+    //         score++;
+    //     }
+    // });
+    // alert(`Your score is ${score}`);
+    showResults(questionsArray);
+}
+
+btnHome.onclick = () => {
     resetQuiz();
 }

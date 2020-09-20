@@ -2,9 +2,6 @@
 .control-panel {
     height: 100vh;
     width: 100vw;
-    background-image: var(--gradient);
-    background-size: 300%;
-    animation: bg-transition-cp 20s ease-in-out infinite alternate;
     padding: 20vh 20vw 13vh 20vw;
 }
 .control-panel form {
@@ -61,9 +58,11 @@
 }
 
 .cp-select {
+    appearance: none;
     border: none;
     outline: none;
     width: 100%;
+    background-color: transparent;
 }
 .cp-select:invalid {
     color: rgba(0,0,0,0.3);
@@ -84,15 +83,6 @@
     overflow: hidden;
     display: inline-block;
     padding: 1rem 1.5rem;
-}
-
-@keyframes bg-transition-cp {
-    from {
-        background-position-x: left;
-    }
-    to {
-        background-position-x: right;
-    }
 }
 
 @media only screen and (min-width: 750px) {

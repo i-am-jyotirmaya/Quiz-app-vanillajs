@@ -1,0 +1,38 @@
+.result {
+    padding: 7vh 15vw 10vh 15vw;
+    min-height: 100vh;
+}
+article.result-item {
+    padding: 10px 0;
+}
+h2.question {
+    font-size: 1.5em;
+}
+.res-btn-hom {
+    appearance: none;
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+hr {
+    height: 1px;
+    background-color: crimson;
+    border: none;
+}
+
+h1, h1 * {
+    font-size: 1.5em;
+}
+
+.ans-correct {
+    color: #1E8449;
+}
+.ans-wrong {
+    color: #E74C3C;
+}
