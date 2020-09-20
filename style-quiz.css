@@ -5,9 +5,9 @@
     padding: 7vh 15vw 10vh 15vw;
     overflow-x: hidden;
     overflow-y: auto;
-    background: var(--gradient-quiz);
+    /* background: var(--gradient-quiz);
     background-size: 300%;
-    animation: bg-transition-q 20s ease-in-out infinite alternate;
+    animation: bg-transition-q 20s ease-in-out infinite alternate; */
     display: grid;
     grid-template-rows: 20vh auto 10vh;
     align-items: center;
@@ -100,11 +100,11 @@ input[type=radio]:checked+label::after {
     opacity: 1;
 }
 
-@keyframes bg-transition-q {
+/* @keyframes bg-transition-q {
     from {
         background-position-x: left;
     }
     to {
         background-position-x: right;
     }
-}
+} */

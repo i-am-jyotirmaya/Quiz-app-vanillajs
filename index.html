@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style-cp.css">
     <link rel="stylesheet" href="style-quiz.css">
+    <link rel="stylesheet" href="style-res.css">
     <script src="./quiz-service.js"></script>
     <script src="./dom-helper.js" defer></script>
     <script src="./function-helper.js"></script>
@@ -29,6 +30,7 @@
                         <option value="" disabled selected hidden>Select Category</option>
                         <option value="0">Random</option>
                     </select>
+                    <span></span>
                 </span>
             </div>
             <div class="cp-input-group">
@@ -101,5 +103,50 @@
             <button style="display: none;" class="q-btn theme-input q-submit">Submit</button>
         </div>
     </section>
+    <section style="display: none;" class="result">
+        <div style="margin: 10px 0; text-align: center;">
+            <button class="res-btn-hom theme-input">Go to Home</button>
+        </div>
+        <h1 class="text-center">Your score is <span id="res-score">0</span></h1>
+        <h3 class="text-center">Detailed Result</h3>
+        <hr>
+        <div id="result-section"></div>
+        <!-- <article class="result-item">
+            <h2 class="question">Question is thios</h2>
+            <div class="answers">
+                <table class="res-ans-tbl">
+                    <tr>
+                        <td>Correct Answer: </td>
+                        <td>correct ans</td>
+                    </tr>
+                    <tr>
+                        <td>Your Answer: </td>
+                        <td>my ans</td>
+                        <td>&#10004;</td>
+                    </tr>
+                </table>
+            </div>
+        </article>
+        <article class="result-item">
+            <h2 class="question">Question is thios</h2>
+            <div class="answers">
+                <table class="res-ans-tbl">
+                    <tr>
+                        <td>Correct Answer: </td>
+                        <td>correct ans</td>
+                    </tr>
+                    <tr>
+                        <td>Your Answer: </td>
+                        <td>my ans</td>
+                        <td>&#10006;</td>
+                    </tr>
+                </table>
+            </div>
+        </article> -->
+    </section>
+    <div class="loader" id="loader">
+        <img src="./images/infy-loader.svg" alt="Loading">
+        <h2>Please wait while we load resources...</h2>
+    </div>
 </body>
 </html>

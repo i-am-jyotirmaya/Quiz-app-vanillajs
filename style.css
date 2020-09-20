@@ -1,6 +1,6 @@
 :root {
     --gradient: linear-gradient(315deg, #845ec2,#d65db1, #ff6f91, #ff9671, #ffc75f, #f9f871);
-    --gradient-quiz: linear-gradient(45deg, #58D68D, #F9E79F, #F8C471,#DC7633);
+    /* --gradient-quiz: linear-gradient(45deg, #58D68D, #F9E79F, #F8C471,#DC7633); */
 }
 
 * {
@@ -11,10 +11,14 @@
     -moz-osx-font-smoothing: grayscale;
     text-shadow:none;
     text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: none;
 }
 
 body {
     margin: 0;
+    background-image: var(--gradient);
+    background-size: 300%;
+    animation: bg-transition 20s ease-in-out infinite alternate;
 }
 
 #app-name, #app-name h1 {
@@ -33,6 +37,32 @@ body {
     margin: 0;
     text-align: center;
 }
+
+.loader {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9999;
+    transform: translateX(-150vw);
+    background-image: var(--gradient);
+    background-size: 300%;
+    animation: bg-transition 20s ease-in-out infinite alternate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 500ms ease-in;
+}
+
+.loader.show {
+    transform: translateX(0);
+}
+.loader h2 {
+    text-align: center;
+}
+
 .quiz-header {
     max-height: 12vh;
     position: absolute;
@@ -85,12 +115,24 @@ body {
     top: -0.5rem;
 }
 
+@keyframes bg-transition {
+    from {
+        background-position-x: left;
+    }
+    to {
+        background-position-x: right;
+    }
+}
+
 @media only screen and (min-width: 800px) {
     .app-header {
         max-height: 12vh;
     }
     .app-header .app-title {
         font-size: 10vh;
+    }
+    .loader h2 {
+        font-size: 2em;
     }
 }
 @media only screen and (max-width: 800px) {
@@ -100,5 +142,8 @@ body {
     }
     .app-header .app-title {
         font-size: 7vh;
+    }
+    .loader h2 {
+        font-size: 1.5em;
     }
 }
