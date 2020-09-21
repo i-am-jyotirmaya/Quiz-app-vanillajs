@@ -72,6 +72,11 @@ async function startQuiz() {
     if(response.response_code === 0) {
         questionsArray.push(...(await prepareQuestions(response.results)));
         // console.log(questionsArray);
+    }else if(response.response_code === 1) {
+        alert('Not enough questions!');
+        hideLoader();
+        resetQuiz();
+        return;
     }
 
     if(questionsArray.length) {
