@@ -54,9 +54,6 @@ async function startQuiz() {
     if(ddlCategory.value) {
         quizService.setCategory(url, +ddlCategory.value);
     }
-    if(ddlType.value) {
-        quizService.setType(url, ddlType.value);
-    }
     if(ddlDifficulty.value) {
         quizService.setDifficulty(url, ddlDifficulty.value);
     }
