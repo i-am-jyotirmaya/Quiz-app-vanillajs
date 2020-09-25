@@ -1,5 +1,4 @@
 const quizService = new QuizService();
-showLoader();
 
 const btnLaunchQuiz = /**@type{HTMLButtonElement} */(document.getElementById('launch-quiz'));
 // const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
@@ -16,6 +15,7 @@ let currentQuestion = 0;
 
 // Initializing app
 initializeCategories(ddlCategory);
+fetchCountAndSetNotification();
 // window.onpopstate = (e) => {
 //     const ev = e || window.event;
 //     console.log(ev);
@@ -121,3 +121,16 @@ btnSubmit.onclick = () => {
 btnHome.onclick = () => {
     resetQuiz();
 }
+
+ddlCategory.onchange = async e => {
+    fetchCountAndSetNotification(+e.target.value, e.target.selectedOptions[0].innerText);
+    // console.log(e);
+};
+
+notifyBtn.onclick = () => {
+    showNotificationBar();
+}
+
+document.querySelector('.cp-notification-close').addEventListener('click', () => {
+    hideNotificationBar();
+})

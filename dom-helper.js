@@ -11,6 +11,7 @@ const ddlDifficulty = /**@type{HTMLSelectElement} */(document.getElementById('se
 const ddlType = /**@type{HTMLSelectElement} */(document.getElementById('sel-type'));
 const txtAmount = /**@type{HTMLInputElement} */(document.getElementById('inp-amount'));
 const loader = /**@type{HTMLDivElement} */(document.getElementById('loader'));
+const notifyBtn = /**@type{HTMLButtonElement} */(document.querySelector('button.btn-nav-icn'));
 
 // Methods
 const initializeCategories = async (/**@type{HTMLSelectElement} */ ddl) => {
@@ -56,6 +57,14 @@ const saveQuizResponse = (questionObj) => {
         alert('You cannot proceed without filling the answer!');
         return false;
     }
+}
+
+const setCountInAmountInput = (count) => {
+    let ph = `No. of questions`;
+    if(+count) {
+        ph = `${count} questions available`;
+    }
+    txtAmount.placeholder = ph;
 }
 
 const setQuestionData = (questionObj, isFirst, isLast) => {
@@ -193,4 +202,94 @@ const hideLoader = () => {
     const defaultText = 'Please wait while we load resources...';
     loader.classList.remove('show');
     updateLoader(defaultText);
+}
+
+const showNotificationIndication = () => {
+    const navIndicator = (document.querySelector('.nav-ind'));
+    navIndicator.classList.add('show');
+}
+
+const hideNotificationIndication = () => {
+    const navIndicator = (document.querySelector('.nav-ind'));
+    navIndicator.classList.remove('show');
+}
+
+const showNotificationBar = () => {
+    const notificationBarBackdrop = /**@type{HTMLDivElement} */(document.querySelector('.cp-notification-backdrop'));
+    const notificationBar = /**@type{HTMLDivElement} */(document.querySelector('.cp-notification'));
+    notificationBar.classList.add('show');
+    notificationBarBackdrop.style.display = "block";
+    notificationBarBackdrop.classList.add('show');
+    hideNotificationIndication();
+}
+
+const hideNotificationBar = () => {
+    const notificationBarBackdrop = /**@type{HTMLDivElement} */(document.querySelector('.cp-notification-backdrop'));
+    const notificationBar = /**@type{HTMLDivElement} */(document.querySelector('.cp-notification'));
+    notificationBar.classList.remove('show');
+    notificationBarBackdrop.classList.remove('show');
+    setTimeout(() => {
+        notificationBarBackdrop.style.display = "none";
+    }, 100);
+}
+
+const hideNoNotificationsMessage = () => {
+    const messageComponent = document.querySelector('.notification-ph');
+    messageComponent.style.display = "none";
+}
+const showNoNotificationsMessage = () => {
+    const messageComponent = document.querySelector('.notification-ph');
+    messageComponent.style.display = "block";
+}
+
+const addNotificationToNotificationBar = (text) => {
+    const notificationList = document.getElementById('notification-list');
+    const notification = document.createElement('li');
+    notification.id = notificationList.children.length ? +notificationList.children[notificationList.children.length-1].id + 1 : 0;
+    notification.innerText = text;
+    notification.onclick = () => {
+        removeNotificationFromNotificationBar(notification.id);
+    }
+    notificationList.appendChild(notification);
+    showNotificationIndication();
+
+    const alternateText = /**@type{HTMLHeadingElement} */(document.querySelector('.notification-ph'));
+    alternateText.style.display = 'none';
+}
+
+const removeNotificationFromNotificationBar = (id) => {
+    const notificationList = document.getElementById('notification-list');
+    const notification = notificationList.querySelector(`li[id="${id}"]`);
+    notification.remove();
+    if(!notificationList.children.length) {
+        const alternateText = /**@type{HTMLHeadingElement} */(document.querySelector('.notification-ph'));
+        alternateText.style.display = 'block';
+    }
+}
+
+const fetchCountAndSetNotification = async (categoryId, categoryName) => {
+    const quizService = new QuizService();
+
+    if(categoryId) {
+        const response = await quizService.getCategoryCount(categoryId);
+        const totalCount = +response.category_question_count.total_question_count;
+        const easyCount = +response.category_question_count.total_easy_question_count;
+        const mediumCount = +response.category_question_count.total_medium_question_count;
+        const hardCount = +response.category_question_count.total_hard_question_count;
+        if(categoryName) {
+            addNotificationToNotificationBar(`${categoryName} has ${totalCount} number of questions.`);
+            addNotificationToNotificationBar(`${categoryName} has ${easyCount} number of easy questions.`);
+            addNotificationToNotificationBar(`${categoryName} has ${mediumCount} number of medium questions.`);
+            addNotificationToNotificationBar(`${categoryName} has ${hardCount} number of hard questions.`);
+        } else {
+            addNotificationToNotificationBar(`Selected category has ${totalCount} number of questions.`);
+            addNotificationToNotificationBar(`Selected category has ${easyCount} number of easy questions.`);
+            addNotificationToNotificationBar(`Selected category has ${mediumCount} number of medium questions.`);
+            addNotificationToNotificationBar(`Selected category has ${hardCount} number of hard questions.`);
+        }
+    } else {
+        const response = await quizService.getCategoryCount();
+        const verifiedCount = +response.overall.total_num_of_verified_questions;
+        addNotificationToNotificationBar(`${verifiedCount} number of questions are available for all categories (Random difficulty).`);
+    }
 }
