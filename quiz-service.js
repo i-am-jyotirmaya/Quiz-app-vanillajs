@@ -1,7 +1,9 @@
 class QuizService {
     #baseUrl = `https://opentdb.com/api.php`;
     #tokenBaseUrl = `https://opentdb.com/api_token.php`;
-    #categoryBaseUrl = `https://opentdb.com/api_category.php`
+    #categoryBaseUrl = `https://opentdb.com/api_category.php`;
+    #countBaseUrl = `https://opentdb.com/api_count.php`;
+    #globalCountBaseUrl = `https://opentdb.com/api_count_global.php`;
     
     clearSearchParams(/**@type{URL} */ url) {
         url.searchParams.forEach((v,k,p) => p.delete(k));
@@ -13,13 +15,29 @@ class QuizService {
     }
 
     async getCategories() {
-        return fetch(this.#categoryBaseUrl).then(res => res.json()).then(json => json).catch(err => err);
+        return fetch(this.#categoryBaseUrl).then(res => res.json()).then(json => json).catch(err => console.log(err));
+    }
+
+    async getCategoryCount(category) {
+        let url = null;
+        if(+category) {
+            url = new URL(this.#countBaseUrl);
+            url.searchParams.append('category', category);
+        } else {
+            url = new URL(this.#globalCountBaseUrl);
+        }
+        console.log(url.href);
+        if(!url) {
+            alert('Unexpected error (Code: ☹)')
+        }
+        return fetch(url).then(res => res.json()).then(json => json).catch(err => console.log(err));
+        
     }
 
     async getSessionToken() {
         const url = new URL(this.#tokenBaseUrl);
         url.searchParams.append('command', 'request');
-        return fetch(url).then(res => res.json()).then(json => json).catch(err => err);
+        return fetch(url).then(res => res.json()).then(json => json).catch(err => console.log(err));
     }
 
     setAmount(/**@type{URL} */ url, /**@type{number} */ amount) {
@@ -52,7 +70,7 @@ class QuizService {
     async sendRequest(/**@type{URL} */ url) {
         this.setEncoding(url, 'base64')
         // console.log(url.href);
-        return fetch(url).then(res => res.json()).then(json => json).catch(err => err);
+        return fetch(url).then(res => res.json()).then(json => json).catch(err => console.log(err));
     }
 
     // resetToken()
