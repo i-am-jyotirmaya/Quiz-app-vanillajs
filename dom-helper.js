@@ -245,7 +245,7 @@ const showNoNotificationsMessage = () => {
 const addNotificationToNotificationBar = (text) => {
     const notificationList = document.getElementById('notification-list');
     const notification = document.createElement('li');
-    notification.id = notificationList.children.length ? +notificationList.children[notificationList.children.length-1].id + 1 : 0;
+    notification.id = `not_li${notificationList.children.length ? +notificationList.children[notificationList.children.length-1].id + 1 : 0}`;
     notification.innerText = text;
     notification.onclick = () => {
         removeNotificationFromNotificationBar(notification.id);
