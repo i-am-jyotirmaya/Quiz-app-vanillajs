@@ -26,7 +26,7 @@ class QuizService {
         } else {
             url = new URL(this.#globalCountBaseUrl);
         }
-        console.log(url.href);
+        // console.log(url.href);
         if(!url) {
             errorHandler('lol👀')
         }
@@ -69,7 +69,7 @@ class QuizService {
 
     async sendRequest(/**@type{URL} */ url) {
         this.setEncoding(url, 'base64')
-        console.log(url.href);
+        // console.log(url.href);
         return fetch(url).then(res => res.json()).then(json => json).catch(err => console.log(err));
     }
 

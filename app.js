@@ -52,7 +52,7 @@ async function startQuiz() {
     // console.log(url.href)
     quizService.setSessionToken(url, token);
     const response = await quizService.sendRequest(url);
-    console.log(response);
+    // console.log(response);
     updateLoader('Preparing Quiz...');
     if(response.response_code === 0) {
         questionsArray.push(...(await prepareQuestions(response.results)));
