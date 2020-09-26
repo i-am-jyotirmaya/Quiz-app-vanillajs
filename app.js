@@ -1,13 +1,6 @@
 const quizService = new QuizService();
 
 const btnLaunchQuiz = /**@type{HTMLButtonElement} */(document.getElementById('launch-quiz'));
-// const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
-// const ddlDifficulty = /**@type{HTMLSelectElement} */(document.getElementById('sel-difficulty'));
-// const ddlType = /**@type{HTMLSelectElement} */(document.getElementById('sel-type'));
-// const txtAmount = /**@type{HTMLInputElement} */(document.getElementById('inp-amount'));
-// const btnPrev = /**@type{HTMLButtonElement} */(document.querySelector('.q-prev'));
-// const btnNext1 = /**@type{HTMLButtonElement} */(document.querySelector('.q-next'));
-// const btnSubmit1 = /**@type{HTMLButtonElement} */(document.querySelector('.q-submit'));
 
 let isQuizStarted = false;
 const questionsArray = [];
@@ -41,13 +34,7 @@ async function startQuiz() {
     // console.log(questionsArray);
     // console.log(isQuizStarted);
     updateLoader('Fetching session token...');
-    let token = '';
-    if (!sessionStorage.getItem('token')) {
-        token = (await quizService.getSessionToken()).token;
-        sessionStorage.setItem('token', token);
-    } else {
-        token = sessionStorage.getItem('token');
-    }
+    let token = await getSessionToken();
     // console.log(token);
     updateLoader('Setting your preferences...');
     const url = quizService.createUrlObject();
@@ -63,21 +50,23 @@ async function startQuiz() {
         quizService.setAmount(url, 10);
     }
     // console.log(url.href)
+    quizService.setSessionToken(url, token);
     const response = await quizService.sendRequest(url);
-    // console.log(response);
+    console.log(response);
     updateLoader('Preparing Quiz...');
     if(response.response_code === 0) {
         questionsArray.push(...(await prepareQuestions(response.results)));
         // console.log(questionsArray);
-    }else if(response.response_code === 1) {
-        alert('Not enough questions!');
-        hideLoader();
+    } else {
+        errorHandler(response.response_code.toString());
         resetQuiz();
+        hideLoader();
         return;
     }
 
     if(questionsArray.length) {
         setQuestionData(questionsArray[currentQuestion], true, false);
+        setQuestionNumberCounter(currentQuestion, questionsArray.length);
     }
     switchToQuiz();
     hideLoader();
@@ -90,6 +79,7 @@ btnPrev.onclick = () => {
     }
     currentQuestion--;
     setQuestionData(questionsArray[currentQuestion], currentQuestion === 0 ? true : false, currentQuestion === questionsArray.length-1 ? true : false);
+    setQuestionNumberCounter(currentQuestion, questionsArray.length);
 }
 
 btnNext.onclick = () => {
@@ -101,6 +91,7 @@ btnNext.onclick = () => {
     // console.log(questionsArray[currentQuestion]);
     currentQuestion++;
     setQuestionData(questionsArray[currentQuestion], currentQuestion === 0 ? true : false, currentQuestion === questionsArray.length-1 ? true : false);
+    setQuestionNumberCounter(currentQuestion, questionsArray.length);
 }
 
 btnSubmit.onclick = () => {
@@ -130,4 +121,17 @@ notifyBtn.onclick = () => {
 
 document.querySelector('.cp-notification-close').addEventListener('click', () => {
     hideNotificationBar();
-})
+});
+
+btnResetSession.onclick = async () => {
+    showLoader('Resetting Session token for you...');
+    const token = await getSessionToken();
+    const isSuccess = await quizService.resetToken(token);
+    if(isSuccess) {
+        resetQuiz();
+        hideLoader();
+        return;
+    }
+    errorHandler('TFR');
+    resetQuiz();
+}

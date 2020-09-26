@@ -28,7 +28,7 @@ class QuizService {
         }
         console.log(url.href);
         if(!url) {
-            alert('Unexpected error (Code: ☹)')
+            errorHandler('lol👀')
         }
         return fetch(url).then(res => res.json()).then(json => json).catch(err => console.log(err));
         
@@ -69,8 +69,19 @@ class QuizService {
 
     async sendRequest(/**@type{URL} */ url) {
         this.setEncoding(url, 'base64')
-        // console.log(url.href);
+        console.log(url.href);
         return fetch(url).then(res => res.json()).then(json => json).catch(err => console.log(err));
+    }
+
+    async resetToken(token) {
+        const url = new URL(this.#tokenBaseUrl);
+        url.searchParams.append('command', 'reset');
+        url.searchParams.append('token', token);
+        const result = await fetch(url).then(res => res.json()).catch(err => console.log(err));
+        if(result && result.response_code == 0 && result.token === token) {
+            return true;
+        }
+        return false;
     }
 
     // resetToken()
