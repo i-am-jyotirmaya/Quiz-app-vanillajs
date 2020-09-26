@@ -11,22 +11,23 @@
     <link rel="stylesheet" href="style-cp.css">
     <link rel="stylesheet" href="style-quiz.css">
     <link rel="stylesheet" href="style-res.css">
+    <script src="./function-helper.js"></script>
     <script src="./quiz-service.js"></script>
     <script src="./dom-helper.js" defer></script>
-    <script src="./function-helper.js"></script>
     <script src="./app.js" defer></script>
 </head>
 <body>
     <header id="app-name" class="app-header">
         <h1 class="app-title">Lets Quizzz</h1>
     </header>
+    <!-- Control Panel Section -->
     <section class="control-panel">
         <div class="cp-nav">
             <button class="btn-nav-icn"><i class="fas fa-info"></i></button>
             <span class="nav-ind hide"></span>
         </div>
         <div class="cp-top-bar">
-            <button class="cp-btn cp-btn-reset theme-input">Reset Session</button>
+            <button id="reset_session" class="cp-btn cp-btn-reset theme-input">Reset Session</button>
         </div>
         <form>
             <div class="cp-input-group">
@@ -50,16 +51,6 @@
                     </select>
                 </span>
             </div>
-            <!-- <div class="cp-input-group">
-                <label class="cp-label" for="sel-type">Type</label>
-                <span class="input-wrapper theme-input">
-                    <select name="sel-type" id="sel-type" class="cp-select" required>
-                        <option value="" disabled selected hidden>Select Question Type</option>
-                        <option value="multiple">Multiple Choice</option>
-                        <option value="boolean">True / False</option>
-                    </select>
-                </span>
-            </div> -->
             <div class="cp-input-group">
                 <label class="cp-label" for="inp-amount">No of questions</label>
                 <span class="input-wrapper theme-input">
@@ -84,44 +75,22 @@
             </ul>
         </div>
     </section>
+    <!-- Quiz Section -->
     <section style="display: none;" class="quiz">
         <div class="q-question">
             <h1 class="q-question-txt" id="question-txt">Question</h1>
         </div>
         <div class="q-ans">
-            <ul class="q-ul-ans" id="ans-ul">
-                <!-- <li>
-                    <span>
-                        <input type="radio" name="ans" id="1">
-                        <label for="1">Lorem, ipsum.</label>
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <input type="radio" name="ans" id="2">
-                        <label for="2">Lorem, ipsum.</label>
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <input type="radio" name="ans" id="3">
-                        <label for="3">Lorem, ipsum.</label>
-                    </span>
-                </li>
-                <li>
-                    <span>
-                        <input type="radio" name="ans" id="4">
-                        <label for="4">Lorem, ipsum dolor.</label>
-                    </span>
-                </li> -->
-            </ul>
+            <ul class="q-ul-ans" id="ans-ul"></ul>
         </div>
         <div class="q-submit-div">
             <button class="q-btn theme-input q-prev">Previous</button>
             <button class="q-btn theme-input q-next">Next</button>
             <button style="display: none;" class="q-btn theme-input q-submit">Submit</button>
         </div>
+        <span id="curr-question-no"></span>
     </section>
+    <!-- Result Section -->
     <section style="display: none;" class="result">
         <div style="margin: 10px 0; text-align: center;">
             <button class="res-btn-hom theme-input">Go to Home</button>
@@ -130,38 +99,6 @@
         <h3 class="text-center">Detailed Result</h3>
         <hr>
         <div id="result-section"></div>
-        <!-- <article class="result-item">
-            <h2 class="question">Question is thios</h2>
-            <div class="answers">
-                <table class="res-ans-tbl">
-                    <tr>
-                        <td>Correct Answer: </td>
-                        <td>correct ans</td>
-                    </tr>
-                    <tr>
-                        <td>Your Answer: </td>
-                        <td>my ans</td>
-                        <td>&#10004;</td>
-                    </tr>
-                </table>
-            </div>
-        </article>
-        <article class="result-item">
-            <h2 class="question">Question is thios</h2>
-            <div class="answers">
-                <table class="res-ans-tbl">
-                    <tr>
-                        <td>Correct Answer: </td>
-                        <td>correct ans</td>
-                    </tr>
-                    <tr>
-                        <td>Your Answer: </td>
-                        <td>my ans</td>
-                        <td>&#10006;</td>
-                    </tr>
-                </table>
-            </div>
-        </article> -->
     </section>
     <div class="loader show" id="loader">
         <img src="./images/infy-loader.svg" alt="Loading">

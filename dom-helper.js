@@ -4,6 +4,7 @@ const ansul = /**@type{HTMLUListElement} */(document.getElementById('ans-ul'));
 const btnPrev = /**@type{HTMLButtonElement} */(document.querySelector('.q-prev'));
 const btnNext = /**@type{HTMLButtonElement} */(document.querySelector('.q-next'));
 const btnSubmit = /**@type{HTMLButtonElement} */(document.querySelector('.q-submit'));
+const btnResetSession = /**@type{HTMLButtonElement} */(document.getElementById('reset_session'));
 const btnHome = /**@type{HTMLButtonElement} */(document.querySelector('.res-btn-hom'));
 const appName = document.getElementById('app-name');
 const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
@@ -11,6 +12,7 @@ const ddlDifficulty = /**@type{HTMLSelectElement} */(document.getElementById('se
 const txtAmount = /**@type{HTMLInputElement} */(document.getElementById('inp-amount'));
 const loader = /**@type{HTMLDivElement} */(document.getElementById('loader'));
 const notifyBtn = /**@type{HTMLButtonElement} */(document.querySelector('button.btn-nav-icn'));
+const currentQuestionNumber = /**@type{HTMLSpanElement} */(document.getElementById('curr-question-no'));
 
 // Methods
 const initializeCategories = async (/**@type{HTMLSelectElement} */ ddl) => {
@@ -290,4 +292,9 @@ const fetchCountAndSetNotification = async (categoryId, categoryName) => {
         const verifiedCount = +response.overall.total_num_of_verified_questions;
         addNotificationToNotificationBar(`${verifiedCount} number of questions are available for all categories (Random difficulty).`);
     }
+}
+
+const setQuestionNumberCounter = (currentQuestionIndex, total) => {
+    const text = `${currentQuestionIndex + 1} / ${total}`;
+    currentQuestionNumber.innerText = text;
 }

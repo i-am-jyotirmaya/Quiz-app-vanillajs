@@ -30,3 +30,39 @@ const prepareQuestions = async (results) => {
         }
     })
 }
+
+const errorHandler = (errorCode) => {
+    switch (errorCode) {
+        case "1":
+            alert('Not Enough questions! Did you check the notification for the number of questions❓');
+            break;
+        case "2":
+            alert('Invalid Paramter passed! (Report to the developer 😅)');
+            break;
+        case "3":
+            alert('Token not set! Try to reload the site... 🔁');
+            break;
+        case "4":
+            alert("All questions exhausted for the selected category 💔. Please reset the token.");
+            break;
+        default:
+            if(errorCode)
+                alert(`An error occured with error code ${errorCode}`);
+            else
+                alert("An Internal error Occurred! (Not sure exactly...😕)")
+            break;
+    }
+}
+
+const getSessionToken = async () => {
+    const quizService = new QuizService();
+    let token = '';
+    if (!sessionStorage.getItem('token')) {
+        token = (await quizService.getSessionToken()).token;
+        sessionStorage.setItem('token', token);
+    } else {
+        token = sessionStorage.getItem('token');
+    }
+
+    return token;
+}
