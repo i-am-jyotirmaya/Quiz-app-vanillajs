@@ -8,7 +8,6 @@ const btnHome = /**@type{HTMLButtonElement} */(document.querySelector('.res-btn-
 const appName = document.getElementById('app-name');
 const ddlCategory = /**@type{HTMLSelectElement} */(document.getElementById('sel-category'));
 const ddlDifficulty = /**@type{HTMLSelectElement} */(document.getElementById('sel-difficulty'));
-const ddlType = /**@type{HTMLSelectElement} */(document.getElementById('sel-type'));
 const txtAmount = /**@type{HTMLInputElement} */(document.getElementById('inp-amount'));
 const loader = /**@type{HTMLDivElement} */(document.getElementById('loader'));
 const notifyBtn = /**@type{HTMLButtonElement} */(document.querySelector('button.btn-nav-icn'));
@@ -184,7 +183,6 @@ const resetQuiz = () => {
     result.querySelector('#result-section').innerHTML = "";
     ddlCategory.value = "";
     ddlDifficulty.value = "";
-    ddlType.value = "";
     txtAmount.value = "";
     appName.classList.replace('quiz-header', 'app-header');
 }
