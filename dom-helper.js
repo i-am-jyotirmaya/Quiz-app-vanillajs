@@ -42,17 +42,24 @@ const switchToQuiz = () => {
 }
 
 const saveQuizResponse = (questionObj) => {
+    console.log(questionObj);
     let ans = '';
     let id = 0;
     if(ansul.querySelector('input[type=radio][name=ans]:checked+label')) {
         ans = ansul.querySelector('input[type=radio][name=ans]:checked+label').innerText;
         id = +ansul.querySelector('input[type=radio][name=ans]:checked').id;
+        console.log(ans, id);
         ans = ans.substring(ans.indexOf(".") + 2);
+        console.log(ans);
         questionObj.isAnswered = true;
         questionObj.answer.id = id;
         questionObj.answer.value = ans;
         if(ans === questionObj.correct_answer)
             questionObj.isCorrect = true;
+        else {
+            questionObj.isCorrect = false;
+        }
+        console.log(questionObj);
         return true;
     } else {
         alert('You cannot proceed without filling the answer!');
