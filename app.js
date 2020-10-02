@@ -135,3 +135,21 @@ btnResetSession.onclick = async () => {
     errorHandler('TFR');
     resetQuiz();
 }
+
+//registerting service worker
+window.addEventListener('load', e => {
+    // new PWAConfApp();
+    registerServiceWorker();
+});
+
+async function registerServiceWorker() {
+    if('serviceWorker' in navigator) {
+        try {
+            await navigator.serviceWorker.register('/serviceworker.js');
+        } catch (e) {
+            alert('Service Worker registration failed! Offline mode may not work.');
+        }
+    } else {
+        // document.querySelector('.alert').removeAttribute('hidden');
+    }
+}
