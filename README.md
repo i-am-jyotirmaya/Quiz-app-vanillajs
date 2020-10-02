@@ -1,5 +1,6 @@
 # Quiz-app-vanillajs
 Quiz app created using vanilla js with :heart:. *Currently in Alpha.*
+Live: [Click Here](https://i-am-jyotirmaya.github.io/Quiz-app-vanillajs/)
 
 ## About
 This is a web application (not a PWA currently) made using vanilla JS. I have used just a single html page for the entire application.
