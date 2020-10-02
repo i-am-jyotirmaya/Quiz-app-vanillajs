@@ -1,5 +1,6 @@
 # Quiz-app-vanillajs
 Quiz app created using vanilla js with :heart:. *Currently in Alpha.*
+
 Live: [Click Here](https://i-am-jyotirmaya.github.io/Quiz-app-vanillajs/)
 
 ## About
