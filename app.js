@@ -145,7 +145,7 @@ window.addEventListener('load', e => {
 async function registerServiceWorker() {
     if('serviceWorker' in navigator) {
         try {
-            await navigator.serviceWorker.register('/serviceworker.js');
+            await navigator.serviceWorker.register('./serviceworker.js');
         } catch (e) {
             alert('Service Worker registration failed! Offline mode may not work.');
         }
