@@ -2,6 +2,7 @@ const cacheName = 'pwa-conf-v1';
 
 const staticAssets = [
     './',
+    './manifest.json',
     './index.html',
     './app.js',
     './dom-helper.js',
