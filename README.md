@@ -2,7 +2,7 @@
 Quiz app created using vanilla js with :heart:. *Feel free to have a look [here](https://i-am-jyotirmaya.github.io/Quiz-app-vanillajs/).*
 
 ## About
-This is a web application (not a PWA currently) made using vanilla JS. I have used just a single html page for the entire application.
+This is a web application (~~not a PWA currently~~ PWA Support has been added) made using vanilla JS. I have used just a single html page for the entire application.
 It uses the free to use API from the [**Open Trivia Database**](https://www.opentdb.com).
 
 It contains three main sections :
