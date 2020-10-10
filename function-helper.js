@@ -15,7 +15,7 @@ const shuffleArray = (array) => {
 const prepareQuestions = async (results) => {
     return results.map((e, index) => {
         let answers = [...e.incorrect_answers, e.correct_answer].map(e => atob(e));
-        if(e.type === "multiple") shuffleArray(answers);
+        shuffleArray(answers);
         return {
             answer: {id: 0, value: ''},
             answers: answers,
