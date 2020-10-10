@@ -48,7 +48,9 @@ self.addEventListener('fetch', async event => {
     console.log('fetch event');
     const req = event.request;
 
-    if(/.*(json)$/.test(req.url)) {
+    // if(/.*(json)$/.test(req.url)) {
+
+    if(/(opentdb.com)/.test(req.url)) {    
         event.respondWith(networkFirst(req));
     } else {
         event.respondWith(cacheFirst(req));
